@@ -17,8 +17,6 @@ export class TaskStatusValidationPipes implements PipeTransform<any> {
       return value;
     }
     const object = plainToClass(metatype, value);
-    3;
-    console.log(object);
     const errors = await validate(object);
     if (errors.length > 0) {
       throw new BadRequestException(errors);

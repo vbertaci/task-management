@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
