@@ -9,6 +9,11 @@ async function bootstrap() {
   const logger = new Logger('bootstrap');
   const app = await NestFactory.create(AppModule);
 
+  console.log(process.env.NODE_ENV);
+  if (process.env.NODE_ENV === 'development') {
+    app.enableCors();
+  }
+
   const options = new DocumentBuilder()
     .setTitle('Task Management')
     .setDescription('This is an API for create tasks')
@@ -18,7 +23,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
 
   SwaggerModule.setup('api', app, document);
-  const port = serverConfig.port;
+  const port = process.env.PORT || serverConfig.port;
   await app.listen(port);
   logger.log(`Application listening on port ${port}`);
 }
